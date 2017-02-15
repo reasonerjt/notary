@@ -64,7 +64,7 @@ authorityKeyIdentifier=keyid,issuer
 basicConstraints = critical,CA:FALSE
 extendedKeyUsage=serverAuth,clientAuth
 keyUsage = critical, digitalSignature, keyEncipherment
-subjectAltName = DNS:notary-server, DNS:notaryserver, DNS:localhost, IP:127.0.0.1
+subjectAltName = DNS:notary-server, DNS:notaryserver, DNS:localhost, IP:10.117.4.142
 subjectKeyIdentifier=hash
 EOL
 
@@ -87,7 +87,7 @@ authorityKeyIdentifier=keyid,issuer
 basicConstraints = critical,CA:FALSE
 extendedKeyUsage=serverAuth,clientAuth
 keyUsage = critical, digitalSignature, keyEncipherment
-subjectAltName = DNS:notary-signer, DNS:notarysigner, DNS:localhost, IP:127.0.0.1
+subjectAltName = DNS:notary-signer, DNS:notarysigner, DNS:localhost, IP:10.117.4.142
 subjectKeyIdentifier=hash
 EOL
 
@@ -110,7 +110,7 @@ authorityKeyIdentifier=keyid,issuer
 basicConstraints = critical,CA:FALSE
 extendedKeyUsage=serverAuth,clientAuth
 keyUsage = critical, digitalSignature, keyEncipherment
-subjectAltName = DNS:secure.example.com, DNS:localhost, IP:127.0.0.1
+subjectAltName = DNS:secure.example.com, DNS:localhost, IP:10.117.4.142
 subjectKeyIdentifier=hash
 EOL
 

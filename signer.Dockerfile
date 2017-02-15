@@ -3,6 +3,8 @@ MAINTAINER David Lawrence "david.lawrence@docker.com"
 
 RUN apk add --update git gcc libc-dev && rm -rf /var/cache/apk/*
 
+ENV http_proxy proxy.vmware.com:3128
+ENV https_proxy proxy.vmware.com:3128
 # Install SQL DB migration tool
 RUN go get github.com/mattes/migrate
 

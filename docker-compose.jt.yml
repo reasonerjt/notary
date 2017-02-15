@@ -1,0 +1,53 @@
+version: "2"
+services:
+  server:
+    image: notary:server-0.5.0
+    networks:
+      - mdb
+      - sig
+    ports:
+      - "8080"
+      - "4443:4443"
+    volumes:
+      - ./jtconfig:/config
+    entrypoint: /usr/bin/env sh
+    command: -c "notary-server -config=/config/server-config-https.json"
+    depends_on:
+      - mysql
+      - signer
+  signer:
+    image: notary:signer-0.5.0
+    networks:
+      mdb:
+      sig:
+        aliases:
+          - notarysigner
+    volumes:
+      - ./jtconfig:/config
+    #environment:
+    #  - NOTARY_SIGNER_DEFAULTALIAS=defaultalias
+    entrypoint: /usr/bin/env sh
+    command: -c "notary-signer -config=/config/signer-config.json"
+    depends_on:
+      - mysql
+  mysql:
+    networks:
+      - mdb
+    volumes:
+      - ./notarysql/jt-mysql-initdb.d:/docker-entrypoint-initdb.d
+      - notary_data_jt:/var/lib/mysql
+    image: mariadb:10.1.10
+    ports:
+      - "3306:3306"
+    environment:
+      - TERM=dumb
+      - MYSQL_ALLOW_EMPTY_PASSWORD="true"
+    command: mysqld --innodb_file_per_table
+volumes:
+  notary_data_jt:
+    external: false
+networks:
+  mdb:
+    external: false
+  sig:
+    external: false
