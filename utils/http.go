@@ -58,7 +58,9 @@ func (root *rootHandler) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 	ctx = context.WithValue(ctx, notary.CtxKeyCryptoSvc, root.trust)
 
 	defer func() {
-		ctxu.GetResponseLogger(ctx).Info("response completed")
+		if ctx != nil {
+			ctxu.GetResponseLogger(ctx).Info("response completed")
+		}
 	}()
 
 	if root.auth != nil {
